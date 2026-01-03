@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Event Hub</title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+<div class="loader">
+  <span></span>
+</div>
+  
+
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+  <div class="nav-container">
+
+    <!-- LOGO -->
+    <div class="nav-logo">
+      <span class="logo-icon">📅</span>
+      <span class="logo-text">EventHub</span>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="nav-links" id="navLinks">
+      <a href="#">Home</a>
+      <a href="#events">Events</a>
+      <a href="#features">Why EventHub</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="nav-btn">Login</a>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="menu-toggle" id="menuToggle">
+      ☰
+    </div>
+
+
+<button class="theme-toggle" id="themeToggle">
+  🌙
+</button>
+
+
+  </div>
+</header>
+
+
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="overlay">
+      <span class="new-events">● 12 New Events This Week</span>
+      <h1>Never Miss a <span class="highlight">College Event</span> Again</h1>
+      <p>
+        Your centralized hub for all college events. Register seamlessly, track
+        eligibility automatically, and receive timely notifications. Say goodbye 
+        to missed deadlines and confusion.
+      </p>
+
+      <!-- HERO BUTTONS -->
+      <div class="hero-buttons">
+        <a href="#" class="btn explore-btn">Explore Events →</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0ysTtWGZDPK7S38zLSv3DNFhM77wI_dbLlnvdfd1wZv0vJg/viewform?usp=sharing&ouid=111634229046188882835" 
+           target="_blank" class="btn register-btn">Click Here </a>
+      </div>
+
+      <!-- HERO STATS -->
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="number">50+</span>
+          <span class="label">Active Events</span>
+        </div>
+        <div class="stat">
+          <span class="number">2,500+</span>
+          <span class="label">Registered Students</span>
+        </div>
+        <div class="stat">
+          <span class="number">10k+</span>
+          <span class="label">Notifications Sent</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- UPCOMING EVENTS SECTION -->
+  <section class="upcoming-events">
+
+    <!-- SECTION HEADER -->
+    <div class="events-header">
+      <h2>Upcoming Events</h2>
+      <p>
+        Don’t miss out on these exciting opportunities. Register before the
+        deadline and secure your spot!
+      </p>
+    </div>
+
+    <!-- EVENTS GRID -->
+    <div class="events-grid">
+
+      <!-- EVENT CARD 1 -->
+      <div class="event-card">
+        <div class="event-image">
+          <span class="tag tech">Tech</span>
+          <span class="tag upcoming">Upcoming</span>
+          <img src="./photo-1504384308090-c894fdcc538d.avif" alt="Hackathon">
+        </div>
+
+        <div class="event-body">
+          <h3>Annual Tech Hackathon 2025</h3>
+          <p>
+            48-hour coding marathon to build innovative solutions.
+            Teams of 2–4 members compete for prizes worth $5000.
+          </p>
+
+          <ul class="event-info">
+            <li>📅 January 15, 2025</li>
+            <li>⏰ 9:00 AM – 9:00 PM</li>
+            <li>📍 Innovation Lab, Building C</li>
+            <li>👥 22 spots left</li>
+          </ul>
+
+          <div class="event-footer closed">
+            <small>Registration closes: 2025-01-10</small>
+            <span>Registration closed</span>
+          </div>
+
+          <a href="#" class="event-btn">View Details →</a>
+        </div>
+      </div>
+
+      <!-- EVENT CARD 2 -->
+      <div class="event-card">
+        <div class="event-image">
+          <span class="tag sports">Sports</span>
+          <span class="tag upcoming">Upcoming</span>
+          <img src="https://i.pinimg.com/1200x/51/35/27/5135273dccb9a71663a57856da886956.jpg" alt="Basketball">
+        </div>
+
+        <div class="event-body">
+          <h3>Inter-College Basketball Championship</h3>
+          <p>
+            Annual basketball tournament featuring teams from 20+
+            colleges. Show your skills and win glory for your college!
+          </p>
+
+          <ul class="event-info">
+            <li>📅 January 20–22, 2025</li>
+            <li>⏰ 10:00 AM – 6:00 PM</li>
+            <li>📍 Sports Complex</li>
+            <li>👥 55 spots left</li>
+          </ul>
+
+          <div class="event-footer closed">
+            <small>Registration closes: 2025-01-18</small>
+            <span>Registration closed</span>
+          </div>
+
+          <a href="#" class="event-btn">View Details →</a>
+        </div>
+      </div>
+
+      <!-- EVENT CARD 3 -->
+      <div class="event-card">
+        <div class="event-image">
+          <span class="tag cultural">Cultural</span>
+          <span class="tag upcoming">Upcoming</span>
+          <img src="https://i.pinimg.com/736x/13/54/24/13542459dde4ca5d3d0069daa27aa44d.jpg" alt="Cultural Fest">
+        </div>
+
+        <div class="event-body">
+          <h3>Cultural Fest: Rhythm & Blues</h3>
+          <p>
+            Three days of music, dance, drama, and art. Participate
+            in competitions and cultural showcases.
+          </p>
+
+          <ul class="event-info">
+            <li>📅 February 5, 2025</li>
+            <li>⏰ 4:00 PM – 10:00 PM</li>
+            <li>📍 Open Air Theatre</li>
+            <li>👥 266 spots left</li>
+          </ul>
+
+          <div class="event-footer closed">
+            <small>Registration closes: 2025-02-01</small>
+            <span>Registration closed</span>
+          </div>
+
+          <a href="#" class="event-btn">View Details →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- VIEW ALL -->
+    <div class="view-all">
+      <a href="#" class="view-all-btn">View All Events →</a>
+    </div>
+
+  </section>
+
+
+
+    <!-- WHY CHOOSE EVENTHUB SECTION -->
+  <section class="why-eventhub">
+
+    <!-- SECTION HEADER -->
+    <div class="why-header">
+      <h2>Why Choose EventHub?</h2>
+      <p>
+        We've built a comprehensive solution to eliminate confusion and
+        streamline the entire event management process.
+      </p>
+    </div>
+
+    <!-- FEATURES GRID -->
+    <div class="features-grid">
+
+      <!-- FEATURE 1 -->
+      <div class="feature-card">
+        <div class="icon-box">
+          📊
+        </div>
+        <h3>Excel Integration</h3>
+        <p>
+          Register easily via linked Excel sheets. Your data syncs
+          automatically without manual intervention.
+        </p>
+      </div>
+
+      <!-- FEATURE 2 -->
+      <div class="feature-card">
+        <div class="icon-box">
+          👤✔
+        </div>
+        <h3>Auto Eligibility Check</h3>
+        <p>
+          Students are automatically categorized based on department,
+          year, and achievements. Only see events you're eligible for.
+        </p>
+      </div>
+
+      <!-- FEATURE 3 -->
+      <div class="feature-card">
+        <div class="icon-box">
+          📅
+        </div>
+        <h3>Event Dashboard</h3>
+        <p>
+          View all ongoing, upcoming, and past events in one place with
+          timing, venue, and registration details.
+        </p>
+      </div>
+
+      <!-- FEATURE 4 -->
+      <div class="feature-card">
+        <div class="icon-box">
+          🔔
+        </div>
+        <h3>Smart Alerts</h3>
+        <p>
+          Visual countdown timers and deadline alerts ensure you never
+          miss a registration window.
+        </p>
+      </div>
+
+      <!-- FEATURE 5 -->
+      <div class="feature-card">
+        <div class="icon-box">
+          ✉️
+        </div>
+        <h3>Email Notifications</h3>
+        <p>
+          Receive automated emails for registration confirmation,
+          deadline reminders, and event updates.
+        </p>
+      </div>
+
+      <!-- FEATURE 6 -->
+      <div class="feature-card">
+        <div class="icon-box">
+          🛡️
+        </div>
+        <h3>Secure & Transparent</h3>
+        <p>
+          All registrations are tracked securely, preventing invalid
+          sign-ups and ensuring fair participation.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CALL TO ACTION SECTION -->
+  <section class="cta-section">
+
+    <div class="cta-badge">
+      ✨ Join 2,500+ students already registered
+    </div>
+
+    <h2>Ready to Never Miss an Event?</h2>
+
+    <p>
+      Register once, get personalized event recommendations, and stay
+      updated with automatic notifications. It's that simple.
+    </p>
+
+    <div class="cta-buttons">
+      <a href="#" class="cta-btn primary">Register Now →</a>
+      <a href="#" class="cta-btn secondary">Browse Events</a>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="footer-grid">
+
+      <!-- BRAND -->
+      <div class="footer-brand">
+        <div class="brand-logo">
+          📅
+        </div>
+        <h3>EventHub</h3>
+        <p>
+          Your centralized platform for college events. Never miss a
+          deadline, always stay informed.
+        </p>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">All Events</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Register</a></li>
+          <li><a href="#">Login</a></li>
+        </ul>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="footer-column">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#">Academic Events</a></li>
+          <li><a href="#">Cultural Events</a></li>
+          <li><a href="#">Sports Events</a></li>
+          <li><a href="#">Tech Events</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <ul class="contact-list">
+          <li>✉ events@college.edu</li>
+          <li>📞 +1 (555) 123-4567</li>
+          <li>📍 Campus Center, Room 101</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- FOOTER BOTTOM -->
+<div class="footer-bottom">
+  <div class="footer-line"></div>
+  <p>© 2026 College EventHub. All rights reserved.</p>
+</div>
+
+<script>
+  window.addEventListener("load", () => {
+    document.querySelector(".loader").style.display = "none";
+  });
+</script>
+
+
+<script src="script.js"></script>
+
+
+
+</body>
+</html>   
+
