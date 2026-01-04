@@ -4,133 +4,219 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     LOADER
+     ELEMENTS
   ========================= */
-  const loader = document.querySelector(".loader");
-  window.addEventListener("load", () => {
-    if (loader) {
-      loader.style.opacity = "0";
-      setTimeout(() => loader.style.display = "none", 400);
-    }
-  });
-
-  /* =========================
-     NAVBAR SCROLL EFFECT
-  ========================= */
+  const body = document.body;
   const navbar = document.querySelector(".navbar");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.style.boxShadow = "0 10px 40px rgba(0,0,0,0.35)";
-    } else {
-      navbar.style.boxShadow = "none";
-    }
-  });
-
-  /* =========================
-     MOBILE MENU TOGGLE
-  ========================= */
+  const loader = document.querySelector(".loader");
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
+  const themeToggle = document.getElementById("themeToggle");
 
-  menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
-
-  /* Close menu on link click (mobile) */
-  document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("active");
-    });
+  /* =========================
+     LOADER (SMOOTH FADE)
+  ========================= */
+  window.addEventListener("load", () => {
+    if (!loader) return;
+    loader.classList.add("loader-hide");
   });
 
   /* =========================
-     SMOOTH SCROLL
+     SCROLL PERFORMANCE (THROTTLE)
   ========================= */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-
-  /* =========================
-     ACTIVE NAV LINK ON SCROLL
-  ========================= */
-  const sections = document.querySelectorAll("section");
-  const navItems = document.querySelectorAll(".nav-links a");
+  let lastScroll = 0;
 
   window.addEventListener("scroll", () => {
-    let current = "";
+    if (Math.abs(window.scrollY - lastScroll) < 5) return;
+    lastScroll = window.scrollY;
 
+    /* Navbar shadow */
+    navbar?.classList.toggle("navbar-scrolled", window.scrollY > 50);
+
+    /* Active nav link */
+    setActiveNav();
+  });
+
+  /* =========================
+     MOBILE MENU
+  ========================= */
+  menuToggle?.addEventListener("click", () => {
+    navLinks?.classList.toggle("active");
+    menuToggle.classList.toggle("open");
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks?.classList.remove("active");
+      menuToggle?.classList.remove("open");
+    });
+  });
+
+  /* =========================
+     SMOOTH SCROLL (NATIVE)
+  ========================= */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", e => {
+      const target = document.querySelector(anchor.getAttribute("href"));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  /* =========================
+     ACTIVE NAV LINK
+  ========================= */
+  const sections = [...document.querySelectorAll("section")];
+  const navItems = document.querySelectorAll(".nav-links a");
+
+  function setActiveNav() {
+    let current = "";
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      if (scrollY >= sectionTop) {
-        current = section.getAttribute("class");
+      if (window.scrollY >= section.offsetTop - 140) {
+        current = section.id;
       }
     });
 
     navItems.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href")?.includes(current)) {
-        link.classList.add("active");
-      }
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === `#${current}`
+      );
     });
-  });
+  }
 
   /* =========================
-     SCROLL REVEAL (LIGHTWEIGHT)
+     SCROLL REVEAL (PREMIUM)
   ========================= */
-  const revealElements = document.querySelectorAll(
-    ".event-card, .feature-card, .cta-section"
-  );
-
   const revealObserver = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
+          entry.target.classList.add("reveal-visible");
+          revealObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.2 }
   );
 
-  revealElements.forEach(el => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(40px)";
-    el.style.transition = "all 0.8s ease";
-    revealObserver.observe(el);
+  document
+    .querySelectorAll(".event-card, .feature-card, .cta-section")
+    .forEach(el => {
+      el.classList.add("reveal-hidden");
+      revealObserver.observe(el);
+    });
+
+  /* =========================
+     DARK MODE (SMOOTH)
+  ========================= */
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark");
+    themeToggle.textContent = "☀️";
+  }
+
+  themeToggle?.addEventListener("click", () => {
+    body.classList.toggle("dark");
+
+    const isDark = body.classList.contains("dark");
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
   });
 
 });
 
 
 
-/* =========================
-   DARK MODE TOGGLE
-========================= */
-const themeToggle = document.getElementById("themeToggle");
-const body = document.body;
 
-// Load saved theme
-if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark");
-  themeToggle.textContent = "☀️";
-}
 
-themeToggle.addEventListener("click", () => {
-  body.classList.toggle("dark");
 
-  if (body.classList.contains("dark")) {
-    themeToggle.textContent = "☀️";
-    localStorage.setItem("theme", "dark");
-  } else {
-    themeToggle.textContent = "🌙";
-    localStorage.setItem("theme", "light");
-  }
+
+
+
+
+
+
+
+
+/* =======================
+   PREMIUM FLIP + HOVER FX
+======================= */
+
+document.querySelectorAll(".event-flip-card").forEach(card => {
+  const inner = card.querySelector(".event-flip-inner");
+
+  let hoverTimer = null;
+  let isFlipped = false;
+  let isAnimating = false;
+
+  const FLIP_DURATION = 900; // sync with CSS
+  const HOVER_DELAY = 140;
+
+  // ---------- HOVER ENTER ----------
+  card.addEventListener("mouseenter", () => {
+    if (isAnimating || isFlipped) return;
+
+    hoverTimer = setTimeout(() => {
+      isAnimating = true;
+      isFlipped = true;
+
+      inner.style.transition =
+        "transform 0.9s cubic-bezier(0.22, 1, 0.36, 1)";
+      inner.style.transform = "rotateY(180deg)";
+
+      setTimeout(() => (isAnimating = false), FLIP_DURATION);
+    }, HOVER_DELAY);
+  });
+
+  // ---------- HOVER LEAVE ----------
+  card.addEventListener("mouseleave", () => {
+    clearTimeout(hoverTimer);
+    if (isAnimating || !isFlipped) return;
+
+    isAnimating = true;
+    isFlipped = false;
+
+    inner.style.transition =
+      "transform 0.75s cubic-bezier(0.4, 0, 0.2, 1)";
+    inner.style.transform = "rotateY(0deg)";
+
+    setTimeout(() => (isAnimating = false), FLIP_DURATION);
+  });
+
+  // ---------- MICRO TILT (DEPTH) ----------
+  card.addEventListener("mousemove", e => {
+    if (!isFlipped || isAnimating) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    const tiltX = (-y / rect.height) * 6;
+    const tiltY = (x / rect.width) * 6;
+
+    inner.style.transform =
+      `rotateY(180deg) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+  });
+
+  // ---------- RESET TILT ----------
+  card.addEventListener("mouseleave", () => {
+    if (!isFlipped) return;
+    inner.style.transform = "rotateY(180deg)";
+  });
+
+  // ---------- MOBILE TAP ----------
+  card.addEventListener("click", () => {
+    if (isAnimating) return;
+
+    isAnimating = true;
+    isFlipped = !isFlipped;
+
+    inner.style.transition =
+      "transform 0.85s cubic-bezier(0.22, 1, 0.36, 1)";
+    inner.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+
+    setTimeout(() => (isAnimating = false), FLIP_DURATION);
+  });
 });
